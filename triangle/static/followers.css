@@ -1,0 +1,20 @@
+#followers {
+	width: 60vw;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#followers h1 {
+	margin-left: 2rem;
+}
+
+.follow-container {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.profile-photo {
+	margin-right: 2rem;
+	margin-bottom: 1rem;
+}

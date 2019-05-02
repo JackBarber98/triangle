@@ -1,0 +1,118 @@
+.container {
+	margin: 1rem;
+    background-color: #FDFDFD;
+    height: auto;
+    border: 2px solid black;
+}
+
+.container h1 {
+	margin: 1rem;
+}
+
+.post li {
+	list-style-type: none;
+}
+
+.post {
+	margin: 1rem;
+}
+
+.post-user {
+	font-size: 1.2em;
+	margin-bottom: 0.2em;
+	margin-top: 0.2em;
+}
+
+.post-content {
+	font-size: 1em;
+}
+
+#wrap {
+    width: 950px;
+    background-color: #6FA8DD;
+    height: 650px;
+    margin-top: 30px;
+}
+
+.left {
+    width: 30vw;
+    float: left;
+	margin-right: 0rem;
+}
+
+.comments {
+	margin-top: 1rem;
+}
+
+.write-post {
+	position: relative;
+	margin: 1rem;
+	width: 60vw;
+	float: right;
+}
+
+.post-box {
+	position: relative;
+	margin: 1rem;
+}
+
+.submit {
+	position: relative;
+	display: block;
+	margin: 1rem;
+	float: left
+}
+
+.feed {
+	z-index: -1;
+	margin: 1rem 1rem;
+    width: 60vw;
+    float: right;
+}
+
+.bottomleft {
+    width:300px;
+    background-color: #FDFDFD;
+    height: 300px;
+    float: left;
+    margin-top: 25px;
+    border: 2px solid black;
+}
+
+.user-details {
+	width: 100%;
+	display: flex;
+	align-items: left;
+}
+
+.user-details ul {
+	padding: 0;
+	margin: 0;
+}
+
+.user-details img{
+	float: left;
+	display: inline-block;
+	margin-right: 1rem;
+}
+
+.post-user a {
+	transition-duration: 0.3s;
+}
+
+.post-user a:hover {
+	transition-duration: 0.3s;
+	color: #A9A9A9;
+}
+
+.post-content {
+	transition-duration: 0.3s;
+}
+
+.post-content:hover {
+	color: #A9A9A9;
+}
+
+.comment-div {
+	font-size: 0.7rem;
+}

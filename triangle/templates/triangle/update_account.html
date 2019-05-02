@@ -1,0 +1,15 @@
+{% extends 'triangle/base_template.html' %}
+	{% block content %}
+	
+	<div class="container center-div">
+		<h1>Update Profile Links</h1>
+		<p>If you wish to update links associated with your account, please enter a link into the appropriate box. 
+		<br> Leave blank any box you do not wish to update.</p>
+		<form enctype="multipart/form-data" method="POST">
+			{% csrf_token %}
+			{{ update_form.as_p }}
+			<button class="follow button" type="submit" name="" value="Confirm">Confirm</button>
+		</form>
+	</div>
+	
+	{% endblock content %}

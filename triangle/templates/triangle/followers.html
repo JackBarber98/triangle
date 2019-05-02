@@ -1,0 +1,22 @@
+{% extends 'triangle/base_template.html' %}
+{% block content %}
+	<body>
+	<div class="container" id="followers">
+		<h1>{{ profile.user }}'s Followers</h1>
+		<ul>
+			{% if followers %}
+				{% for follower in followers %}
+					<li>
+						<a class="follow-container" href="{% url "triangle:profile_detail" follower.user_from.user.id %}">
+							<img class="profile-photo" alt="Profile Photo" src="{{ follower.user_from.photo.url }}">
+							<h2>{{ follower.user_from }}</h2>
+						</a>
+					</li>
+				{% endfor %}
+			{% else %}
+				<p>This user is not followed by anyone</p>
+			{% endif %}
+		</ul>
+	</div>
+	</body>
+{% endblock content %}

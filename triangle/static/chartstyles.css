@@ -1,0 +1,18 @@
+canvas {
+	width: 30vw !important;
+	height: 30vw !important;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 2rem;
+}
+
+.chart {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50vw;
+}
+
+.chart h2 {
+	text-align: center;
+}

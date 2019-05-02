@@ -1,0 +1,136 @@
+	{% extends 'triangle/base_template.html' %}
+	{% block content %}
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+		<script>
+			var csrftoken = Cookies.get("csrftoken");
+			function csrfSafeMethod(method) {
+				return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+			}
+		
+			$.ajaxSetup( {
+				beforeSend: function(xhr, settings) {
+					if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+						xhr.setRequestHeader("X-CSRFToken", csrftoken);
+					}
+				}
+			});
+		
+			$(document).ready(function() {
+				$('.follow').click(function(e){
+					{% block domready %}
+					e.preventDefault();
+					$.post('{% url "triangle:follow_user" %}', { id: $(this).data('id'), action: $(this).data('action')},
+						function(data){
+							if (data['status'] == 'ok') {
+								var previous_action = $('.follow').data('action');
+								$('.follow').data('action', previous_action == 'follow' ? 'unfollow' : 'follow');
+								$('.follow').text(previous_action == 'follow' ? 'Unfollow' : 'Follow');
+							}
+						}
+					);
+				{% endblock %}
+				});
+			});
+		</script>
+		<title>Profile</title>
+	</head>
+	
+	<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 col-sm-6">
+				<div class="card hovercard">
+					<div class="info">
+						<img class="profile-photo" alt="Profile Photo" src="{{profile.photo.url}}">
+						<div class="title">
+						
+							<ul id="follow-info">
+								<li><h2>{{profile.user}}</h2></li>
+								<li><a id="follow_counter" href="{% url "triangle:follows_user" user.id %}" class="count">{{followers.count}} Followers</a></li>
+								<li><a id="following_counter" href="{% url "triangle:following_user" user.id %}">{{following.count}} Following</a></li>
+								<li>						
+									<button href="#" data-id="{{ profile.user.id }}" data-action="{% if current_profile in profile.followers.all %}un{% endif %}follow" class="follow button">
+									{% if current_profile in profile.followers.all %}
+										Unfollow
+									{% else %}
+										Follow
+									{% endif %}
+									</button></li>
+							</ul>
+						</div>
+						<div class="desc" id="bio">
+								<p>{{ profile.bio }}</p>
+						</div>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container write-post" id="profile-post"> 
+		<div class="Profile_session">
+			<h1>Useful Links</h1>
+			<div class="post-box profile-page" id="link_section">
+				{% if profile.account_type == "artist" %}
+					<a href="{{ acc.store }}"><h2>Store</h2></a>
+					<a href="{{ acc.spotify }}"><h2>Spotify</h2></a>
+					<a href="{{ acc.tickets }}"><h2>Tickets</h2></a>
+				{% endif %}
+				{% if profile.account_type == "venue" %}
+					<a href="{{ acc.store }}"><h2>Shop</h2></a>
+					<a href="{{ acc.tickets }}"><h2>Tickets</h2></a>
+					<h2>Address</h2>
+					<p>{{ acc.address_one }}</p>
+					<p>{{ acc.address_two }}</p>
+					<p>{{ acc.postcode }}</p>
+				{% endif %}
+				{% if profile.account_type == "fan" %}
+					<a href="{{ acc.spotify }}"><h2>Spotify</h2></a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+		
+		
+			{% if user_posts_list %}
+				
+				{% for post in user_posts_list %}
+					<div class="container feed">
+						<a href="{% url "triangle:post_detail" post.id %}">
+						<div class="post">
+								<div class="user-details">
+									<li class="user-photo"><a href="{% url "triangle:profile_detail" post.user.id %}"><img class="profile-photo" src="{{ profile.photo.url }}" alt="Profile Photo"></a></li>
+									<li class="post-user"><a href="{% url "triangle:profile_detail" post.user.id %}"><h2>{{ post.user.username }}</h2></a></li>
+								</div>
+							
+								<div class="post-div">
+									<a href="{% url "triangle:post_detail" post.id %}">
+										<p class="post-content">{{ post.post_content }}</p></li>
+										<li class="post-published">{{ post.published }}</li>
+									</a>
+								</div>
+								
+								{% with total_likes=post.users_like.count users_like=post.users_like.all %}
+								{% with total_comments=post.comment_set.count %}
+								<div class="comment-div">
+									<a href="{% url "triangle:post_detail" post.id %}"><h3 class="comment-count">{{ total_likes }} likes</h3>
+									<h3 class="comment-count">{{ total_comments }} comments</h3></a>
+								</div>
+								{% endwith %}
+								{% endwith %}
+						</div>
+					</div>
+				{% endfor %}
+			
+			{% else %}
+				<div class="post">
+					<p>No posts available. Please check back later!</p>
+				</div>
+			{% endif %}
+		</div>
+		
+</body>
+{% endblock content %}

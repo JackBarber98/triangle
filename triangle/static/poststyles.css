@@ -1,0 +1,30 @@
+.like-div {
+	margin: 1rem;
+}
+
+.comment-form {
+	margin: 1rem;
+}
+
+#post-detail {
+	width: 60vw;
+	margin: 1rem auto;
+}
+
+.comment-div li {
+	margin: 0;
+}
+
+.comment-div p{
+	font-size: 1rem;
+	margin-left: 2rem;
+	padding: 0.2rem;
+}
+
+.comment-div {
+	font-size: 1rem;
+	margin-bottom: 0;
+	display: flex;
+	align-content: center;
+	text-align: center;
+}

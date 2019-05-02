@@ -1,0 +1,96 @@
+{% extends 'triangle/base_template.html' %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Home</title>
+	</head>
+
+	{% block content %}
+	<body>
+	<div align="center">
+</div>
+	
+		<div class="container left">
+			<h1>Popular Posts</h1>
+			{% if popular_posts_list %}
+			{% for post in popular_posts_list %}
+					<a href="{% url "triangle:post_detail" post.id %}">
+					<div class="post">
+						<div class="user-details">
+							{% for profile in popular_profile_list %}
+								{% if forloop.counter == forloop.parentloop.counter %}
+									<a class="user-photo" href="{% url "triangle:profile_detail" post.user.id %}"><img class="profile-photo" src="{{ profile.photo.url }}" alt="Profile Photo"></a>
+								{% endif %}
+							{% endfor %}
+							<a class="post-user" href="{% url "triangle:profile_detail" post.user.id %}"><h2>{{ post.user.username }}</h2></a>
+						</div>
+						<div class="post-div">
+							<a href="{% url "triangle:post_detail" post.id %}">
+								<p class="post-content">{{ post.post_content }}</p>
+								<p class="post-published">{{ post.published }}</p>
+							</a>
+						</div>
+					</div>
+			{% endfor %}
+			{% else %}
+				<div class="post">
+					<p>No posts available. Please check back later!</p>
+				</div>
+			{% endif %}
+		</div>
+		
+		<div class="container write-post">
+				<h1>Write a Post</h1>
+				<form class="post-box" enctype="multipart/form-data" method="POST">
+					{% csrf_token %}
+					{{ post_form.as_p }}
+					<button class="submit" type="submit" name="" value="Post">Post</button>
+				</form>
+		</div>
+		
+		
+	{% if latest_posts_list %}
+			<ul>
+			{% for post in latest_posts_list %}
+				<div class="container feed">
+					<a href="{% url "triangle:post_detail" post.id %}">
+					<div class="post">
+							<div class="user-details">
+								{% for profile in latest_profile_list %}
+									{% if forloop.counter == forloop.parentloop.counter %}
+										<a class="user-photo" href="{% url "triangle:profile_detail" post.user.id %}"><img class="profile-photo" src="{{ profile.photo.url }}" alt="Profile Photo"></a>
+										<a class="post-user" href="{% url "triangle:profile_detail" post.user.id %}"><h2>{{ post.user.username }}</h2></a>
+									{% endif %}
+								{% endfor %}
+							</div>
+							
+							<div class="post-div">
+								<a href="{% url "triangle:post_detail" post.id %}">
+									<p class="post-content">{{ post.post_content }}</p>
+									<p class="post-published">{{ post.published }}<p>
+								</a>
+							</div>
+								{% with total_likes=post.users_like.count users_like=post.users_like.all %}
+								{% with total_comments=post.comment_set.count %}
+								<div class="comment-div">
+									<a href="{% url "triangle:post_detail" post.id %}"><h3 class="comment-count">{{ total_comments }} comments</h3>
+									<h3 class="comment-count">{{ total_likes }} likes</h3></a>
+								</div>
+								{% endwith %}
+								{% endwith %}
+							
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+			</ul>
+		{% else %}
+			<div class="container feed">
+				<div class="post">
+					<p>No posts available. Please check back later!</p>
+				</div>
+			</div>
+	{% endif %}
+	</body>
+	{% endblock content %}
+</html>

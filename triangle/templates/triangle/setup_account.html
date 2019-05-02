@@ -1,0 +1,13 @@
+{% extends 'triangle/base_template.html' %}
+	{% block content %}
+	
+	<div class="container">
+		<h1>Account Basics</h1>
+		<form enctype="multipart/form-data" method="POST">
+			{% csrf_token %}
+			{{ url_form.as_p }}
+			<button class="follow button" type="submit" name="" value="Confirm">Confirm</button>
+		</form>
+	</div>
+	
+	{% endblock content %}

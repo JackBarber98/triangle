@@ -1,0 +1,89 @@
+	{% extends 'triangle/base_template.html' %}	
+	{% block content %}
+		<body>
+		<div class="container chart">
+			<h2>User Locations</h2>
+			<canvas id="locations" width="1000" height="1000"></canvas>
+		</div>
+		<div class="container chart">
+			<h2>User Activity</h2>
+			<canvas id="loginChart" width="1000" height="1000"></canvas>
+		</div>
+	</body>
+	
+	<script>
+	let locationContext = document.getElementById('locations').getContext('2d');
+	let locationChart = new Chart(locationContext, {
+		type: 'doughnut',
+		data: {
+			labels: [{% for i in city_data %}"{{ i.city }}",{% endfor %}],
+			datasets: [{
+				label: '# of Votes',
+				data: [{% for i in city_data %}"{{ i.c }}",{% endfor %}],
+				backgroundColor: [
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)'
+				],
+				borderColor: [
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)'
+				],
+				borderWidth: 1
+			}]
+		},
+		options: {
+			legend:{display: false},
+			tooltips: {
+				titleFontSize: 40,
+				bodyFontSize: 40
+			},
+		}
+	});
+	</script>
+	
+	<script>
+	let loginContext = document.getElementById('loginChart').getContext('2d');
+	let loginChart = new Chart(loginContext, {
+		type: 'doughnut',
+		data: {
+			labels: [{% for key, value in login_data.items %}"{{ key }}",{% endfor %}],
+			datasets: [{
+				label: '# of Votes',
+				data: [{% for key, value in login_data.items %}"{{ value }}",{% endfor %}],
+				backgroundColor: [
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)'
+				],
+				borderColor: [
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)'
+				],
+				borderWidth: 1
+			}]
+		},
+		options: {
+			legend:{display: false},
+			tooltips: {
+				titleFontSize: 40,
+				bodyFontSize: 40
+			},
+		}
+	});	
+	</script>
+	{% endblock content %}

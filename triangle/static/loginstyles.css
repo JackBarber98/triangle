@@ -1,0 +1,92 @@
+body {
+	background: url("/static/login_background.jpg")no-repeat center center fixed;
+	background-size: cover;
+}
+
+h2 {
+	text-align: center;
+	margin: 1rem;
+}
+
+form {
+	position: relative;
+	display: block;
+	max-width: 25vw;
+	width: 25vw;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+tr {
+	display: block;
+	width: 25vw;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+td {
+	display: inline;
+	width: 25vw;
+	margin-left: auto;
+	margin-right: auto;	
+}
+
+.form-btn {
+	margin-top: 1rem;
+	background-color: white;
+	color: black;
+	border: 2px solid #8BB9C1;
+	border-radius: 8px;
+	transition-duration: 0.3s;
+	padding: 0.5rem;
+}
+
+button:hover {
+  background-color: #8BB9C1;
+  color: white;
+}
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 30vw;
+}
+
+.content {
+	background-color: white;
+	width: 25vw;
+	height: 25vw;
+	border: 5px solid #8BB9C1;
+}
+
+.tab {
+	overflow: hidden;
+	background-color: '8BB9C1;
+	position: relative;
+	top: 1rem;
+	width: 10rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.tab button {
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 1rem;
+}
+
+.tab button:hover{
+	background-color: #8BB9C1;
+}
+
+.tab button:focus{
+	background-color: #8BB9C1;
+}
+
+#Register{
+	display: none;
+}

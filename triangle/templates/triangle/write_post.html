@@ -1,0 +1,10 @@
+{% if registered %}
+	<h1>Post Here</h1>
+{% else %}
+	<h1>Post</h1>
+	<form enctype="multipart/form-data" method="POST">
+		{% csrf_token %}
+		{{ post_form.as_p }}
+		<input type="submit" name="" value="Post">
+	</form>
+{% endif %}

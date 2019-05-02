@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load static %}
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="{% static "follows.js" %}"></script>
+		<title>Profile</title>
+	</head>
+	
+	<body>
+			<p>{{ profile.followers.count }}</p>
+		<div id="about">
+			{% if acc_type == Artist %}
+				<iframe src="{{ acc.spotify }}" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
+				<p>{{ acc.spotify }} </p>
+				<p>{{ acc.store }} </p>
+				<p>{{ acc.tickets }}</p>
+			{% endif %}
+			{% if acc_type == Venue %}
+				<p>{{ acc.store }} </p>
+				<p>{{ acc.tickets }}</p>
+				<p>{{ acc.address_one }}</p>
+				<p>{{ acc.address_two }}</p>
+				<p>{{ acc.postcode }} </p>
+			{% endif %}
+			{% if acc_type == Fan %}
+				<p>{{ acc.spotify }}</p>
+			{% endif %}
+		</div>
+	</body>
+</html>

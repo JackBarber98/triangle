@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load static %}
+		<link rel="stylesheet" href="{% static "base_template.css" %}">
+		<link rel="stylesheet" href="{% static "loginstyles.css" %}">
+		<script src="{% static "login.js" %}"></script>
+		
+	</head>
+	
+	<body>
+		<img class="center" id="logo" src="{% static "Logo_Final.png" %}" alt="Triangle Logo">
+		
+		<div class="tab center">
+			<button class="tabbutton center" onclick="toggle_visibility(1)" autofocus>Login</button>
+			<button class="tabbutton center" onclick="toggle_visibility(2)" >Register</button>
+		</div>
+		
+		<div id="Login" class="content center">
+			{% block content %}
+			{% if login_form.errors %}
+			<p>Your username and password didn't match. Please try again.</p>
+			{% endif %}
+
+			{% if next %}
+			{% if user.is_authenticated %}
+			<p>Your account doesn't have access to this page.</p>
+			{% else %}
+			<p>Please login to see this page.</p>
+			{% endif %}
+			{% endif %}
+			
+			<h2>Login</h2>
+			<form class="center" method="post">
+			{% csrf_token %}
+				<table>
+					<tr>
+						<td>{{ login_form.username.label_tag }}</td>
+					</tr>
+					<tr>
+						<td>{{ login_form.username }}</td>
+					</tr>
+					<tr>
+						<td>{{ login_form.password.label_tag }}</td>
+					</tr>
+					<tr>
+						<td>{{ login_form.password }}</td>
+					</tr>
+				</table>
+
+				<button type="submit" value="login" class="form-btn">Login</button>
+				<input type="hidden" name="next" value="{{ next }}" />
+			</form>
+			{% endblock %}
+		</div>
+
+		<div id="Register" class="content center">
+			<h2>Register</h2>
+			<form class="center" enctype="multipart/form-data" method="POST">
+				{% csrf_token %}
+				<table>
+					<tr>
+						<td>{{ user_form.username.label_tag }}</td>
+					</tr>
+					<tr>
+						<td>{{ user_form.username }}</td>
+					</tr>
+					<tr>
+						<td>{{ user_form.email.label_tag }}</td>
+					</tr>
+					<tr>
+						<td>{{ user_form.email }}</td>
+					</tr>
+					<tr>
+						<td>{{ user_form.password.label_tag }}</td>
+					</tr>
+					<tr>
+						<td>{{ user_form.password }}</td>
+					</tr>
+				</table>
+				<button type="submit" value="login" class="form-btn">Register</button>
+			</form>
+		</div>
+	</body>
+</html>

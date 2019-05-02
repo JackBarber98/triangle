@@ -1,0 +1,132 @@
+.hovercard {
+    position: relative;
+    padding-top: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: rgba(214, 224, 226, 0.2);
+}
+
+.hovercard .cardheader {
+    background-size: cover;
+    height: 400px;
+}
+
+.hovercard .profile-photo {
+	float: left;
+	margin: 1rem;
+	width: 10rem;
+	height: 10rem;
+}
+
+.hovercard .avatar img {
+    width: 20vw;
+    height: 20vw;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(255,255,255,0.5);
+}
+
+.hovercard .info {
+	float: left;
+    padding: 4px 8px 10px;
+}
+
+.info {
+	display: flex;
+	align-items: left;
+	vertical-align: middle;
+}
+
+button {
+	cursor: pointer;
+	margin-top: 8px;
+	background-color: white; 
+	color: black; 
+	border: 2px solid #8BB9C1;
+	border-radius: 8px;
+	padding: 8px 20px;
+    transition-duration: 0.3s;
+}
+
+button:hover {
+  background-color: #8BB9C1;
+  color: white;
+}
+
+#post-button {
+	cursor: pointer;
+	background-color: white; 
+	color: black; 
+	border: 2px solid #8BB9C1;
+	border-radius: 8px;
+	padding: 8px 20px;
+    transition-duration: 0.4ms;
+}
+
+#post-button:hover {
+	background-color: #8BB9C1;
+	color: white;
+}
+.hovercard .info .title {
+    margin-bottom: 4px;
+    font-size: 24px;
+    line-height: 1;
+    color: black;
+    vertical-align: middle;
+}
+
+.hovercard .info .desc {
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 20px;
+    color: black;
+    text-overflow: ellipsis;
+}
+
+.Profile_session {
+	margin-top: 8px;
+}
+
+.desc a{
+	font-size: 1rem;
+	transition-duration: 0.3s;
+}
+
+.desc a:hover {
+	color: #8BB9C1;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#follow-info {
+	margin-right: 2rem;
+}
+
+#info_section {
+	background-color: #abd5ea;
+	float: left; 
+	width: 50%;
+	height: auto;
+}
+
+#profile-post {
+	float: left;
+	width: 33%;
+}
+
+#bio {
+	font-size: 1rem;
+}
+
+#link_section {
+	transition-duration: 0.3s;
+}
+
+#link_section:hover {
+	color: #A9A9A9;
+}
